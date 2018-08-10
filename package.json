@@ -29,9 +29,8 @@
     "prettier": "^1.14.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css,scss}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "linters": {
+      "src/**/*.{js,jsx,json,css,scss}": ["prettier --single-quote --write", "git add"]
+    }
   }
 }
