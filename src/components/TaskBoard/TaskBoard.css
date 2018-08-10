@@ -1,0 +1,4 @@
+.TaskBoard {
+    display: flex;
+    flex-wrap: wrap;
+}
