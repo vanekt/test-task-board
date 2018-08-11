@@ -87,6 +87,7 @@ export default function reducer(state = initialState, action) {
             return {
               ...item,
               dirtyData: {
+                ...item.dirtyData,
                 name: action.payload.value
               }
             };
@@ -103,6 +104,7 @@ export default function reducer(state = initialState, action) {
             return {
               ...item,
               dirtyData: {
+                ...item.dirtyData,
                 text: action.payload.value
               }
             };
