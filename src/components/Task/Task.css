@@ -6,6 +6,7 @@
   width: 350px;
   margin: 10px;
   overflow: hidden;
+  position: relative;
 }
 
 .TaskIcons {
@@ -38,7 +39,15 @@
 }
 
 .TaskAssigneeWrapper {
-  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  line-height: 32px;
+}
+
+.TaskAssigneeWrapper > span {
+  margin-right: 5px;
 }
 
 .TaskAssignee {

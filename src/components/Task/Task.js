@@ -1,7 +1,6 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
-import cn from 'classnames';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
@@ -149,7 +148,7 @@ const Task = props => {
     connectDropTarget &&
     connectDragSource(
       connectDropTarget(
-        <div style={{ opacity }} className={cn('Task', 'fade')}>
+        <div style={{ opacity }} className="Task">
           <div className="TaskIcons">
             {editOrSaveIcon}
             {deleteIcon}
@@ -157,7 +156,9 @@ const Task = props => {
           <span className="TaskId">{data.id}</span>
           {taskName}
           {taskText}
-          <div className="TaskAssigneeWrapper">Assigned to: {assignedTo}</div>
+          <div className="TaskAssigneeWrapper">
+            <span>Assigned to:</span> {assignedTo}
+          </div>
         </div>
       )
     )
