@@ -1,3 +1,10 @@
 .TaskBoard {
   padding: 10px;
 }
+
+.TaskBoardProgressWrapper {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
