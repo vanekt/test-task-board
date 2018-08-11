@@ -1,4 +1,4 @@
-export const implementers = [
+export const assignees = [
   {
     id: 1,
     name: 'John'

@@ -9,10 +9,10 @@ Object.freeze(initialState);
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case INIT_SUCCESS:
-      const implementers = action.payload.implementers;
+      const assignees = action.payload.assignees;
       return {
         ...state,
-        items: implementers
+        items: assignees
       };
 
     default:

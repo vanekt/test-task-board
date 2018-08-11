@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import common from './common';
-import implementers from './implementers';
+import assignees from './assignees';
 import tasks from './tasks';
 
 export default combineReducers({
+  assignees,
   common,
-  implementers,
   tasks
 });

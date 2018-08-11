@@ -1,10 +1,7 @@
+import update from 'immutability-helper';
 import { INIT_SUCCESS } from '../constants/common';
 import { ADD_TASK, MOVE_TASK } from '../constants/tasks';
-import update from 'immutability-helper';
-
-const newTask = {
-  text: 'Some Text'
-};
+import { task } from '../structures/task';
 
 const initialState = {
   items: [],
@@ -41,10 +38,10 @@ export default function reducer(state = initialState, action) {
 
     case ADD_TASK:
       const nextId = state.lastId + 1;
-      const task = { ...newTask, id: nextId };
+      const newTask = { ...task, id: nextId, isEdit: true };
       return {
         ...state,
-        items: [task].concat(state.items),
+        items: [newTask].concat(state.items),
         lastId: nextId
       };
 

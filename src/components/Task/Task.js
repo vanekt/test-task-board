@@ -62,8 +62,9 @@ const cardTarget = {
 };
 
 const Task = props => {
-  const { isDragging, connectDragSource, connectDropTarget, data } = props;
+  const { isDragging, connectDragSource, connectDropTarget, data, assignee } = props;
   const opacity = isDragging ? 0 : 1;
+  const assignedToStr = data.assigneeId ? assignee.name : '-';
 
   return (
     connectDragSource &&
@@ -71,7 +72,11 @@ const Task = props => {
     connectDragSource(
       connectDropTarget(
         <div style={{ opacity }} className="Task">
-          {data.id}. {data.text}
+          <p>
+            {data.id}. {data.name}
+          </p>
+          <p>Assigned to: {assignedToStr}</p>
+          <div>{data.text}</div>
         </div>
       )
     )
