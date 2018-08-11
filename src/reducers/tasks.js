@@ -8,13 +8,15 @@ import {
   CHANGE_TASK_NAME,
   CHANGE_TASK_TEXT,
   CHANGE_TASK_ASSIGNEE,
-  SAVE_TASK
+  SAVE_TASK,
+  SEARCH_TASKS
 } from '../constants/tasks';
 import { task } from '../structures/task';
 
 const initialState = {
   items: [],
-  lastId: 0
+  lastId: 0,
+  searchText: ''
 };
 
 Object.freeze(initialState);
@@ -152,6 +154,12 @@ export default function reducer(state = initialState, action) {
           items: newItems
         };
       })();
+
+    case SEARCH_TASKS:
+      return {
+        ...state,
+        searchText: action.payload
+      };
 
     default:
       return state;

@@ -6,7 +6,8 @@ import {
   CHANGE_TASK_NAME,
   CHANGE_TASK_TEXT,
   CHANGE_TASK_ASSIGNEE,
-  SAVE_TASK
+  SAVE_TASK,
+  SEARCH_TASKS
 } from '../constants/tasks';
 
 export const moveTask = payload => ({
@@ -45,5 +46,10 @@ export const changeTaskText = payload => ({
 
 export const changeTaskAssignee = payload => ({
   type: CHANGE_TASK_ASSIGNEE,
+  payload
+});
+
+export const searchTasks = payload => ({
+  type: SEARCH_TASKS,
   payload
 });
