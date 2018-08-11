@@ -7,7 +7,7 @@ import './TaskBoardHeader.css';
 export default ({ addTask }) => {
   return (
     <div className="TaskBoardHeader">
-      <IconButton onClick={addTask}>
+      <IconButton onClick={addTask} title="Add a new task">
         <AddIcon />
       </IconButton>
       <TaskBoardSearch />

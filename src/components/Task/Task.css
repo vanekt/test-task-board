@@ -11,6 +11,8 @@
 .TaskIcons {
   float: right;
   margin-left: 10px;
+  margin-right: -10px;
+  margin-top: -10px;
 }
 
 .TaskName {
@@ -32,7 +34,7 @@
   overflow: hidden;
   border: 1px solid #ccc;
   margin-bottom: 15px;
-  width: 240px;
+  width: 200px;
 }
 
 .TaskAssigneeWrapper {
@@ -73,7 +75,6 @@
 
 .TaskId {
   float: left;
-  margin-top: 0;
   color: #000;
   height: 20px;
   font-size: 14px;

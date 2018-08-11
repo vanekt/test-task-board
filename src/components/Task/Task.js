@@ -4,9 +4,12 @@ import { DragSource, DropTarget } from 'react-dnd';
 import cn from 'classnames';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 
 import './Task.css';
 
@@ -24,7 +27,12 @@ const cardTarget = {
     if (!component) {
       return null;
     }
-    const dragIndex = monitor.getItem().index;
+    const dragItem = monitor.getItem();
+    if (!dragItem) {
+      return null;
+    }
+
+    const dragIndex = dragItem.index;
     const hoverIndex = props.index;
 
     // Don't replace items with themselves
@@ -64,7 +72,10 @@ const cardTarget = {
     // Generally it's better to avoid mutations,
     // but it's good here for the sake of performance
     // to avoid expensive index searches.
-    monitor.getItem().index = hoverIndex;
+    const monitorItem = monitor.getItem();
+    if (monitorItem) {
+      monitorItem.index = hoverIndex;
+    }
   }
 };
 
@@ -86,12 +97,20 @@ const Task = props => {
   const opacity = isDragging ? 0 : 1;
 
   const editOrSaveIcon = data.isEdit ? (
-    <SaveIcon onClick={saveTask} />
+    <IconButton onClick={saveTask} title="Save task">
+      <SaveIcon />
+    </IconButton>
   ) : (
-    <EditIcon onClick={enableEdit} />
+    <IconButton onClick={enableEdit} title="Edit task">
+      <EditIcon />
+    </IconButton>
   );
 
-  const deleteIcon = <DeleteIcon onClick={deleteTask} />;
+  const deleteIcon = (
+    <IconButton title="Delete task" onClick={deleteTask}>
+      <DeleteIcon />
+    </IconButton>
+  );
 
   const taskName = data.isEdit ? (
     <textarea defaultValue={data.name} className="TaskNameEdit" onChange={changeTaskName} />
