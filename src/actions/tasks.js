@@ -1,8 +1,4 @@
-import { ADD_TASK, INIT_REQUEST, MOVE_TASK } from '../constants/tasks';
-
-export const initTasksRequest = () => ({
-  type: INIT_REQUEST
-});
+import { ADD_TASK, MOVE_TASK } from '../constants/tasks';
 
 export const moveTask = payload => ({
   type: MOVE_TASK,

@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import sagas from './sagas';
-import { initTasksRequest } from './actions/tasks';
+import { initTasksRequest } from './actions/common';
 
 const store = configureStore();
 store.runSaga(sagas, {});

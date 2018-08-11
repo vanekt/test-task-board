@@ -1,4 +1,5 @@
-import { ADD_TASK, INIT_SUCCESS, MOVE_TASK } from '../constants/tasks';
+import { INIT_SUCCESS } from '../constants/common';
+import { ADD_TASK, MOVE_TASK } from '../constants/tasks';
 import update from 'immutability-helper';
 
 const newTask = {
@@ -6,7 +7,6 @@ const newTask = {
 };
 
 const initialState = {
-  isInit: false,
   items: [],
   lastId: 0
 };
@@ -16,7 +16,8 @@ Object.freeze(initialState);
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case INIT_SUCCESS:
-      const lastId = action.payload
+      const tasks = action.payload.tasks;
+      const lastId = tasks
         .map(item => {
           return item.id;
         })
@@ -26,8 +27,7 @@ export default function reducer(state = initialState, action) {
 
       return {
         ...state,
-        isInit: true,
-        items: action.payload,
+        items: tasks,
         lastId: lastId
       };
 

@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
-import tasksSaga from './tasks';
+import commonSaga from './common';
 
 export default function* rootSaga(extraArguments) {
-  yield all([tasksSaga(extraArguments)]);
+  yield all([commonSaga(extraArguments)]);
 }
