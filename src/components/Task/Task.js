@@ -1,6 +1,10 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
+import EditIcon from '@material-ui/icons/Edit';
+import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 import './Task.css';
 
 const cardSource = {
@@ -62,9 +66,24 @@ const cardTarget = {
 };
 
 const Task = props => {
-  const { isDragging, connectDragSource, connectDropTarget, data, assignee } = props;
+  const {
+    isDragging,
+    connectDragSource,
+    connectDropTarget,
+    data,
+    assignee,
+    enableEdit,
+    disableEdit
+  } = props;
   const opacity = isDragging ? 0 : 1;
   const assignedToStr = data.assigneeId ? assignee.name : '-';
+
+  const editOrSaveIcon = data.isEdit ? (
+    <SaveIcon onClick={disableEdit} />
+  ) : (
+    <EditIcon onClick={enableEdit} />
+  );
+  const deleteIcon = <DeleteIcon onClick={null} />;
 
   return (
     connectDragSource &&
@@ -72,6 +91,10 @@ const Task = props => {
     connectDragSource(
       connectDropTarget(
         <div style={{ opacity }} className="Task">
+          <div className="TaskIcons">
+            {editOrSaveIcon}
+            {deleteIcon}
+          </div>
           <p>
             {data.id}. {data.name}
           </p>

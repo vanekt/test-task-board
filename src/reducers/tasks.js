@@ -1,6 +1,6 @@
 import update from 'immutability-helper';
 import { INIT_SUCCESS } from '../constants/common';
-import { ADD_TASK, MOVE_TASK } from '../constants/tasks';
+import { ADD_TASK, MOVE_TASK, TOGGLE_EDIT } from '../constants/tasks';
 import { task } from '../structures/task';
 
 const initialState = {
@@ -43,6 +43,18 @@ export default function reducer(state = initialState, action) {
         ...state,
         items: [newTask].concat(state.items),
         lastId: nextId
+      };
+
+    case TOGGLE_EDIT:
+      const taskId = action.payload.taskId;
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id === taskId) {
+            return { ...item, isEdit: action.payload.value };
+          }
+          return item;
+        })
       };
 
     default:

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Task from './Task';
+import { toggleEdit } from '../../actions/tasks';
 
 const mapStateToProps = (store, ownProps) => {
   // TODO use reselect
@@ -14,10 +15,14 @@ const mapStateToProps = (store, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const taskId = ownProps.data.id;
   return {
-    // enableEdit: () => {
-    //   dispatch(enableEdit());
-    // }
+    enableEdit: () => {
+      dispatch(toggleEdit({ taskId, value: true }));
+    },
+    disableEdit: () => {
+      dispatch(toggleEdit({ taskId, value: false }));
+    }
   };
 };
 
