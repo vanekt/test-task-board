@@ -27,7 +27,7 @@
     "eject": "react-scripts eject",
     "format": "prettier --single-quote --write 'src/**/*.{js,jsx,json,css,scss}'",
     "precommit": "lint-staged",
-    "deploy": "firebase deploy"
+    "deploy": "npm run build && firebase deploy"
   },
   "devDependencies": {
     "husky": "^0.14.3",
