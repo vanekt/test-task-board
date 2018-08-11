@@ -3,5 +3,6 @@ export const task = {
   name: '',
   text: '',
   assigneeId: null,
-  isEdit: false
+  isEdit: false,
+  dirtyData: {}
 };

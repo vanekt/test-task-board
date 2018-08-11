@@ -1,6 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
+import cn from 'classnames';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -73,36 +74,50 @@ const Task = props => {
     data,
     assignee,
     enableEdit,
-    disableEdit,
-    deleteTask
+    deleteTask,
+    changeTaskName,
+    changeTaskText,
+    saveTask
   } = props;
   const opacity = isDragging ? 0 : 1;
   const assignedToStr = data.assigneeId ? assignee.name : '-';
 
   const editOrSaveIcon = data.isEdit ? (
-    <SaveIcon onClick={disableEdit} />
+    <SaveIcon onClick={saveTask} />
   ) : (
     <EditIcon onClick={enableEdit} />
   );
+
   const deleteIcon = <DeleteIcon onClick={deleteTask} />;
+
+  const taskName = data.isEdit ? (
+    <textarea defaultValue={data.name} className="TaskNameEdit" onChange={changeTaskName} />
+  ) : (
+    <p className="TaskName">{data.name}</p>
+  );
+
+  const taskText = data.isEdit ? (
+    <textarea defaultValue={data.text} className="TaskTextEdit" onChange={changeTaskText} />
+  ) : (
+    <div className="TaskText">{data.text}</div>
+  );
 
   return (
     connectDragSource &&
     connectDropTarget &&
     connectDragSource(
       connectDropTarget(
-        <div style={{ opacity }} className="Task fade">
+        <div style={{ opacity }} className={cn('Task', 'fade')}>
           <div className="TaskIcons">
             {editOrSaveIcon}
             {deleteIcon}
           </div>
-          <p className="TaskName">
-            {data.id}. {data.name}
-          </p>
+          <span className="TaskId">{data.id}</span>
+          {taskName}
+          {taskText}
           <p>
             Assigned to: <span className="TaskAssignee">{assignedToStr}</span>
           </p>
-          <div>{data.text}</div>
         </div>
       )
     )

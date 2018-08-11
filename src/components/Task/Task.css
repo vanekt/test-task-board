@@ -1,8 +1,8 @@
 .Task {
-  border: 1px solid blue;
-  background-color: aqua;
+  border: 1px solid #ccc;
+  background-color: #d7f7f7;
   padding: 10px;
-  height: 200px;
+  height: 220px;
   width: 350px;
   margin: 10px;
   overflow: hidden;
@@ -16,9 +16,65 @@
 .TaskName {
   margin-top: 0;
   font-weight: 700;
+  line-height: 1.3em;
+  height: 3.6em;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.TaskNameEdit {
+  background-color: #fff;
+  padding: 4px;
+  margin-top: 0;
+  font-weight: 700;
+  line-height: 1.3em;
+  height: 3.6em;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  width: 250px;
 }
 
 .TaskAssignee {
   font-weight: 700;
   color: #333333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.TaskText {
+  position: relative;
+  line-height: 1.3em;
+  height: 6.4em;
+  overflow: hidden;
+}
+
+.TaskText:after {
+  content: '';
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  height: 1.3em;
+  background: linear-gradient(to right, rgba(215, 247, 274, 0), rgba(215, 247, 274, 1) 50%);
+}
+
+.TaskTextEdit {
+  width: 100%;
+  box-sizing: border-box;
+  height: 7em;
+}
+
+.TaskId {
+  float: left;
+  margin-top: 0;
+  color: #000;
+  height: 20px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  margin-right: 10px;
+  font-weight: 700;
 }
