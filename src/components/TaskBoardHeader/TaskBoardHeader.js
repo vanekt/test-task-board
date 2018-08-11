@@ -3,10 +3,10 @@ import IconButton from '@material-ui/core/IconButton';
 import AddIcon from '@material-ui/icons/Add';
 import './TaskBoardHeader.css';
 
-export default () => {
+export default ({ addTask }) => {
   return (
     <div className="TaskBoardHeader">
-      <IconButton color="inherit" aria-label="Menu">
+      <IconButton onClick={addTask}>
         <AddIcon />
       </IconButton>
     </div>

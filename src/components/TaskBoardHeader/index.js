@@ -1,1 +1,1 @@
-export { default } from './TaskBoardHeader';
+export { default } from './TaskBoardHeaderContainer';
