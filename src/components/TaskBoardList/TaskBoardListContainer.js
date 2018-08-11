@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import TaskBoard from './TaskBoard';
+import TaskBoardList from './TaskBoardList';
 import { moveTask } from '../../actions/tasks';
 
 const mapStateToProps = store => ({
@@ -15,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(TaskBoard);
+)(TaskBoardList);
