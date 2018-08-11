@@ -20,6 +20,7 @@
     "redux-saga": "^0.16.0"
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -30,7 +31,8 @@
   "devDependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
-    "prettier": "^1.14.2"
+    "prettier": "^1.14.2",
+    "source-map-explorer": "^1.5.0"
   },
   "lint-staged": {
     "linters": {
