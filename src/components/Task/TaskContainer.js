@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Task from './Task';
-import { toggleEdit } from '../../actions/tasks';
+import { deleteTask, toggleEdit } from '../../actions/tasks';
 
 const mapStateToProps = (store, ownProps) => {
   // TODO use reselect
@@ -22,6 +22,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     disableEdit: () => {
       dispatch(toggleEdit({ taskId, value: false }));
+    },
+    deleteTask: () => {
+      if (!window.confirm('Delete this task?')) {
+        return null;
+      }
+      dispatch(deleteTask({ taskId }));
     }
   };
 };

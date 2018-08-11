@@ -5,8 +5,20 @@
   height: 200px;
   width: 350px;
   margin: 10px;
+  overflow: hidden;
 }
 
 .TaskIcons {
   float: right;
+  margin-left: 10px;
+}
+
+.TaskName {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.TaskAssignee {
+  font-weight: 700;
+  color: #333333;
 }

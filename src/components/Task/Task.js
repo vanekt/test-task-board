@@ -73,7 +73,8 @@ const Task = props => {
     data,
     assignee,
     enableEdit,
-    disableEdit
+    disableEdit,
+    deleteTask
   } = props;
   const opacity = isDragging ? 0 : 1;
   const assignedToStr = data.assigneeId ? assignee.name : '-';
@@ -83,22 +84,24 @@ const Task = props => {
   ) : (
     <EditIcon onClick={enableEdit} />
   );
-  const deleteIcon = <DeleteIcon onClick={null} />;
+  const deleteIcon = <DeleteIcon onClick={deleteTask} />;
 
   return (
     connectDragSource &&
     connectDropTarget &&
     connectDragSource(
       connectDropTarget(
-        <div style={{ opacity }} className="Task">
+        <div style={{ opacity }} className="Task fade">
           <div className="TaskIcons">
             {editOrSaveIcon}
             {deleteIcon}
           </div>
-          <p>
+          <p className="TaskName">
             {data.id}. {data.name}
           </p>
-          <p>Assigned to: {assignedToStr}</p>
+          <p>
+            Assigned to: <span className="TaskAssignee">{assignedToStr}</span>
+          </p>
           <div>{data.text}</div>
         </div>
       )
