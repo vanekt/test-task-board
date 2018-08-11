@@ -13,7 +13,7 @@ const mapStateToProps = store => {
       const assignee = assignees.find(a => a.id === item.assigneeId);
       return (
         item.name.toLowerCase().includes(searchText.toLowerCase()) ||
-        assignee.name.toLowerCase().includes(searchText.toLowerCase())
+        (assignee && assignee.name.toLowerCase().includes(searchText.toLowerCase()))
       );
     });
   }
