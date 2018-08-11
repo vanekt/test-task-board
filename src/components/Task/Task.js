@@ -2,6 +2,8 @@ import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 import cn from 'classnames';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -73,14 +75,15 @@ const Task = props => {
     connectDropTarget,
     data,
     assignee,
+    assignees,
     enableEdit,
     deleteTask,
     changeTaskName,
     changeTaskText,
+    changeTaskAssignee,
     saveTask
   } = props;
   const opacity = isDragging ? 0 : 1;
-  const assignedToStr = data.assigneeId ? assignee.name : '-';
 
   const editOrSaveIcon = data.isEdit ? (
     <SaveIcon onClick={saveTask} />
@@ -102,6 +105,28 @@ const Task = props => {
     <div className="TaskText">{data.text}</div>
   );
 
+  const assignedToStr = data.assigneeId ? assignee.name : '-';
+  let assigneeDefaultValue = '';
+  if (data.dirtyData.assigneeId !== undefined) {
+    assigneeDefaultValue = data.dirtyData.assigneeId;
+  } else if (assignee && assignee.id) {
+    assigneeDefaultValue = assignee.id;
+  }
+  const assignedTo = data.isEdit ? (
+    <Select value={assigneeDefaultValue} onChange={changeTaskAssignee}>
+      <MenuItem value="">
+        <em>-</em>
+      </MenuItem>
+      {assignees.map(item => (
+        <MenuItem key={item.id} value={item.id}>
+          {item.name}
+        </MenuItem>
+      ))}
+    </Select>
+  ) : (
+    <span className="TaskAssignee">{assignedToStr}</span>
+  );
+
   return (
     connectDragSource &&
     connectDropTarget &&
@@ -115,9 +140,7 @@ const Task = props => {
           <span className="TaskId">{data.id}</span>
           {taskName}
           {taskText}
-          <p>
-            Assigned to: <span className="TaskAssignee">{assignedToStr}</span>
-          </p>
+          <div className="TaskAssigneeWrapper">Assigned to: {assignedTo}</div>
         </div>
       )
     )

@@ -7,6 +7,7 @@ import {
   TOGGLE_EDIT,
   CHANGE_TASK_NAME,
   CHANGE_TASK_TEXT,
+  CHANGE_TASK_ASSIGNEE,
   SAVE_TASK
 } from '../constants/tasks';
 import { task } from '../structures/task';
@@ -106,6 +107,23 @@ export default function reducer(state = initialState, action) {
               dirtyData: {
                 ...item.dirtyData,
                 text: action.payload.value
+              }
+            };
+          }
+          return item;
+        })
+      };
+
+    case CHANGE_TASK_ASSIGNEE:
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id === action.payload.taskId) {
+            return {
+              ...item,
+              dirtyData: {
+                ...item.dirtyData,
+                assigneeId: action.payload.value
               }
             };
           }

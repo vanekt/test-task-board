@@ -5,6 +5,7 @@ import {
   toggleEdit,
   changeTaskName,
   changeTaskText,
+  changeTaskAssignee,
   saveTask
 } from '../../actions/tasks';
 
@@ -16,7 +17,8 @@ const mapStateToProps = (store, ownProps) => {
   const assignee = assignees.find(item => item.id === assingeeId);
 
   return {
-    assignee: assignee
+    assignee: assignee,
+    assignees: assignees
   };
 };
 
@@ -42,6 +44,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     changeTaskText: e => {
       // TODO debounce
       dispatch(changeTaskText({ taskId, value: e.target.value }));
+    },
+    changeTaskAssignee: e => {
+      dispatch(changeTaskAssignee({ taskId, value: e.target.value }));
     }
   };
 };

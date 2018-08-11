@@ -8,3 +8,4 @@ export const TOGGLE_EDIT = prefix + 'TOGGLE_EDIT';
 
 export const CHANGE_TASK_NAME = prefix + 'CHANGE_TASK_NAME';
 export const CHANGE_TASK_TEXT = prefix + 'CHANGE_TASK_TEXT';
+export const CHANGE_TASK_ASSIGNEE = prefix + 'CHANGE_TASK_ASSIGNEE';

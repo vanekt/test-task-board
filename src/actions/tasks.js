@@ -5,6 +5,7 @@ import {
   TOGGLE_EDIT,
   CHANGE_TASK_NAME,
   CHANGE_TASK_TEXT,
+  CHANGE_TASK_ASSIGNEE,
   SAVE_TASK
 } from '../constants/tasks';
 
@@ -39,5 +40,10 @@ export const saveTask = payload => ({
 
 export const changeTaskText = payload => ({
   type: CHANGE_TASK_TEXT,
+  payload
+});
+
+export const changeTaskAssignee = payload => ({
+  type: CHANGE_TASK_ASSIGNEE,
   payload
 });
