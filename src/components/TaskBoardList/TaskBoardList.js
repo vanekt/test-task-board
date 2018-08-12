@@ -24,6 +24,7 @@ const TaskBoardList = ({ tasks, moveTask, searchText, isAlertOpen, toggleAlert }
             toggleAlert(false);
           }}
           color="primary"
+          autoFocus
         >
           Ok
         </Button>
