@@ -1,12 +1,17 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
+import { compose, withState } from 'recompose';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 import './Task.css';
 
@@ -89,7 +94,9 @@ const Task = props => {
     changeTaskName,
     changeTaskText,
     changeTaskAssignee,
-    saveTask
+    saveTask,
+    isConfirm,
+    toggleConfirm
   } = props;
   const opacity = isDragging ? 0 : 1;
 
@@ -104,7 +111,12 @@ const Task = props => {
   );
 
   const deleteIcon = (
-    <IconButton title="Delete task" onClick={deleteTask}>
+    <IconButton
+      title="Delete task"
+      onClick={() => {
+        toggleConfirm(true);
+      }}
+    >
       <DeleteIcon />
     </IconButton>
   );
@@ -143,6 +155,30 @@ const Task = props => {
     <span className="TaskAssignee">{assignedToStr}</span>
   );
 
+  const confirmDialog = isConfirm ? (
+    <Dialog
+      open={true}
+      onClose={() => {
+        toggleConfirm(false);
+      }}
+    >
+      <DialogTitle>Delete this task?</DialogTitle>
+      <DialogActions>
+        <Button
+          onClick={() => {
+            toggleConfirm(false);
+          }}
+          color="primary"
+        >
+          Cancel
+        </Button>
+        <Button onClick={deleteTask} color="primary" autoFocus>
+          Delete
+        </Button>
+      </DialogActions>
+    </Dialog>
+  ) : null;
+
   return (
     connectDragSource &&
     connectDropTarget &&
@@ -159,6 +195,7 @@ const Task = props => {
           <div className="TaskAssigneeWrapper">
             <span>Assigned to:</span> {assignedTo}
           </div>
+          {confirmDialog}
         </div>
       )
     )
@@ -170,6 +207,10 @@ const TaskDragSource = DragSource('card', cardSource, (connect, monitor) => ({
   isDragging: monitor.isDragging()
 }))(Task);
 
-export default DropTarget('card', cardTarget, connect => ({
+const TaskDropTarget = DropTarget('card', cardTarget, connect => ({
   connectDropTarget: connect.dropTarget()
 }))(TaskDragSource);
+
+const enhance = compose(withState('isConfirm', 'toggleConfirm', false));
+
+export default enhance(TaskDropTarget);

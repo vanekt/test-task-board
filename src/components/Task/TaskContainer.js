@@ -32,9 +32,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(saveTask({ taskId }));
     },
     deleteTask: () => {
-      if (!window.confirm('Delete this task?')) {
-        return null;
-      }
       dispatch(deleteTask({ taskId }));
     },
     changeTaskName: e => {
