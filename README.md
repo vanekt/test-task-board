@@ -20,13 +20,13 @@
 
 Написать инструкцию по запуску и тестированию.
 
+# DEMO
+
+https://test-task-board.firebaseapp.com/
+
 # How to run
 
 ```bash
 npm install
 npm start
 ```
-
-# DEMO
-
-https://test-task-board.firebaseapp.com/
