@@ -6,7 +6,7 @@ const assigneesIds = assignees.map(item => item.id);
 
 export const tasks = [];
 
-for (let i = 8; i > 0; i--) {
+for (let i = 12; i > 0; i--) {
   tasks.push({
     ...task,
     id: i,
