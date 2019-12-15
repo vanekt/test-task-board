@@ -1,5 +1,4 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 import { compose, withState } from 'recompose';
 import Select from '@material-ui/core/Select';
@@ -39,31 +38,6 @@ const cardTarget = {
 
     // Don't replace items with themselves
     if (dragIndex === hoverIndex) {
-      return;
-    }
-
-    // Determine rectangle on screen
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-
-    // Get vertical middle
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-
-    // Determine mouse position
-    const clientOffset = monitor.getClientOffset();
-
-    // Get pixels to the top
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-    // Only perform the move when the mouse has crossed half of the items height
-    // When dragging downwards, only move when the cursor is below 50%
-    // When dragging upwards, only move when the cursor is above 50%
-    // Dragging downwards
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
-
-    // Dragging upwards
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
       return;
     }
 
@@ -185,12 +159,14 @@ const Task = props => {
     connectDragSource(
       connectDropTarget(
         <div style={{ opacity }} className="Task">
-          <div className="TaskIcons">
-            {editOrSaveIcon}
-            {deleteIcon}
+          <div className="TaskTop">
+            <span className="TaskId">{data.id}</span>
+            {taskName}
+            <div className="TaskIcons">
+              {editOrSaveIcon}
+              {deleteIcon}
+            </div>
           </div>
-          <span className="TaskId">{data.id}</span>
-          {taskName}
           {taskText}
           <div className="TaskAssigneeWrapper">
             <span>Assigned to:</span> {assignedTo}
